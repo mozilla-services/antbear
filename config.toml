@@ -1,0 +1,26 @@
+[antbear]
+input_files = [
+    "topsites-proxy-unit.pcap",
+    "topsites-proxy-dev.pcap",
+    "accounts.firefox.com_Archive [20-10-23 15-13-15].har",
+    "accounts.stage.mozaws.net_Archive [20-10-23 15-06-11].har",
+    "file.unknown",
+]
+
+[antbear.analyzers]
+# TODO: check config for API host and route to filter
+import_path = "antbear.analyzers.api"
+names = [
+  "NonHTMLHTTPResponseContentType",
+  "ReturnsOpenAPISpec",
+  "ScannableAuthorizationHeaderBearerToken",
+]
+
+[antbear.NonHTMLHTTPResponseContentType]
+api_uri = ""
+
+[antbear.ReturnsOpenAPISpec]
+api_uri = "/api/spec"
+
+[antbear.ScannableAuthorizationHeaderBearerToken]
+token_regex = "^.*$"

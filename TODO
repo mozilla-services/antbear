@@ -1,0 +1,33 @@
+# checklist updates
+
+* What are "sensible" cookie expirations?
+** Should cookies set same-site strict?
+
+Switch to MUST, SHOULD RFC language?
+
+* https://tools.ietf.org/html/rfc2119
+* https://tools.ietf.org/html/rfc6919#section-1
+
+* Anything about CSRF? (ZAP baseline checks these but nothing in the checklist; does HTTPObs check?)
+* Anything about escaping or encoding output to prevent XSS/PostXSS/DOM clobbering?
+
+TODO: figure out how to parse into werkzeug.{Request,Response}? e.g. >>> werkzeug.test.EnvironBuilder(input_stream=BytesIO(b'GET /foo HTTP/1.1\r\nHost: foo.com\r\nAuthorization: bearer foo\r\n')).get_request().headers
+
+TODO: publish to pypi or dockerhub? (use pyoxidizer? https://github.com/indygreg/PyOxidizer)
+TODO: docs: document adding a new property: Should take an HTTPExchange and **return** an exception or the valid data parsed from the HTTPExchange?
+TODO: docs: document capturing traffic from a browser, docker image/container, and proxy
+TODO: output: print or save output as text as mermaid diagram or as JSON report with exceptions
+
+TODO: SRI: validate SRI hashes
+TODO: SRI: add config for exceptions and what to treat as first party
+TODO: SRI return exchange URI and script path (and line number or offset?) for MissingSubresourceIntegrityForThirdPartyScript
+TODO: Cookies: add check for * [ ] Use a sensible Expiration
+
+TODO: pcap: might still be useful for pcap to har: from pcaper import PcapParser
+TODO: pcap: teach scapy HTTP to handle duplicate headers (preserving order) until then use antbear.http.{Request, Response}
+TODO: pcap: try https://scapy.readthedocs.io/en/latest/api/scapy.scapypipes.html or other pipe thing https://www.thepythoncode.com/article/sniff-http-packets-scapy-python
+
+TODO: config: read from pyproject tool:antbear or cargo config toml files?
+
+
+TODO: replace HTTPExchange with a better scapy HTTP layer (backfills some data for a lower layer); fixes defragmenting TCP sessions
